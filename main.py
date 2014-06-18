@@ -1,6 +1,8 @@
 import smtplib
 import sys
 
+from email.mime.text import MIMEText
+
 if len(sys.argv) < 8 :
   print 'There should be 8 arguments'
   sys.exit(1)
@@ -13,9 +15,13 @@ username  = str(sys.argv[5])
 password  = str(sys.argv[6])
 host  = str(sys.argv[7])
 
-msg = "Subject: " + subject + "\nFrom:" + fromaddr + "\nTo: " + toaddrs + "\n" + body
+msg = MIMEText(body)
+msg['Subject'] = subject
+msg['From'] = fromaddr
+msg['To'] = toaddrs
+
 server = smtplib.SMTP(host)
 server.starttls()
 server.login(username,password)
-server.sendmail(fromaddr, toaddrs.split(","), msg)
+server.sendmail(fromaddr, toaddrs.split(","), msg.as_string())
 server.quit()
