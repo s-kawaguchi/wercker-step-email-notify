@@ -17,5 +17,5 @@ msg = "Subject: " + subject + "\nFrom:" + fromaddr + "\nTo: " + toaddrs + "\n" +
 server = smtplib.SMTP(host)
 server.starttls()
 server.login(username,password)
-server.sendmail(fromaddr, toaddrs, msg)
+server.sendmail(fromaddr, toaddrs.split(","), msg)
 server.quit()
