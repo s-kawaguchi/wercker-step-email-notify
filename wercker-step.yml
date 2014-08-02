@@ -1,16 +1,28 @@
 name: email-notify
-version: 0.0.8
+version: 0.0.9
 description: Send an email message
 keywords:
   - notification
   - email
 properties:
+  host:
+    type: string
+    required: true
+  username:
+    type: string
+    required: true
+  password:
+    type: string
+    required: true
   from:
     type: string
     required: true
   to:
     type: string
     required: true
+  on:
+    type: string
+    default: always
   failed-subject:
     type: string
   passed-subject:
@@ -19,15 +31,3 @@ properties:
     type: string
   passed-body:
     type: string
-  username:
-    type: string
-    required: true
-  password:
-    type: string
-    required: true
-  host:
-    type: string
-    required: true
-  on:
-    type: string
-    default: always
